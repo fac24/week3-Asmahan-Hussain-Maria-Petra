@@ -26,6 +26,23 @@ function showPosts(request, response) {
     // return postsHTML;
   });
 
+  const form = `
+    <form method="POST" action="/add-post">
+      <label for="username">Username:</label>
+      <input id="username" name="username" type="text" required />
+        <br />
+      <label for="movie">Movie title:</label>
+      <input id="movie" name="movie" type="text" />
+        <br />
+      <label for="comment">Review:</label>
+      <input id="comment" name="comment" type="text" />
+        <br />
+      <label for="rating">Fandom rating:</label>
+      <input type="number" id="rating" name="rating" min="1" max="5" value="">
+        <br />
+      <button type="submit" class="btn">Post</button>
+  `;
+
   // Will add the postsHTML to the HTML below ${postsHTML}
   const HTML = `
   <!DOCTYPE html>
@@ -42,7 +59,7 @@ function showPosts(request, response) {
   </head>
   <body>
     <h1>Posts from all movie fanatics</h1>
-    <a href="/add-post">Click here to add a post!</a>
+    ${form}
     <section class="posts">
     </section>
   </body>
