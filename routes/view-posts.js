@@ -1,4 +1,32 @@
+const db = require("../database/connection");
+
 function showPosts(request, response) {
+  const SELECT_USER = `SELECT users.username, movie_title.posts, comment.posts, rating.posts.
+    FROM users
+    INNER JOIN posts
+    ON users.id = posts.user_id`;
+  db.query(SELECT_USER).then((result) => {
+    console.log(result);
+    // Assuming below is correct it can be uncommented. Can't test on my laptop with no database setup :'(
+
+    // let postsHTML = "";
+    // const posts = result.rows;
+    // posts.map(
+    //   (post) =>
+    //     (postsHTML = `
+    //     <div class="post-container">
+    //     <p>Username: ${post.username}</p>
+    //     <p>Movie: ${post.movie_title}</p>
+    //     <p>Comment: ${post.comment}</p>
+    //     <p>Rating: ${post.rating}</p>
+    //     </div>
+
+    //     `.concat(postsHTML)) //so posts to at top of list not bottom
+    // );
+    // return postsHTML;
+  });
+
+  // Will add the postsHTML to the HTML below ${postsHTML}
   const HTML = `
   <!DOCTYPE html>
 <html lang="en">
@@ -13,8 +41,10 @@ function showPosts(request, response) {
     <title>Team 1</title>
   </head>
   <body>
-    <h1>Posts to date</h1>
+    <h1>Posts from all movie fanatics</h1>
     <a href="/add-post">Click here to add a post!</a>
+    <section class="posts">
+    </section>
   </body>
   `;
 
