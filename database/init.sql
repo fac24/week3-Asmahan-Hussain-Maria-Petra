@@ -14,7 +14,7 @@ CREATE TABLE posts (
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE, -- CASCADE means delete the post if the author gets deleted
   movie_title TEXT,
   comment TEXT,
-  rating NUMBER
+  rating TEXT
 );
 
 CREATE TABLE sessions (
@@ -23,15 +23,15 @@ CREATE TABLE sessions (
 );
 
 INSERT INTO users (username, email, password) VALUES
-  ('movielover', 'movies@email.com', "12345"),
-  ('horrrofanatic', 'hello@email.com', "abcdef"),
-  ('musicals101', 'goodbye@email.com', "67890")
+  ('movielover', 'movies@email.com', 'movies'),
+  ('horrrofanatic', 'hello@email.com', 'hello'),
+  ('musicals101', 'goodbye@email.com', 'goodbye')
 ;
 
 INSERT INTO posts (user_id, movie_title, comment, rating) VALUES
   (1, 'Forest Gump', 'Can watch this over and over again.', 5),
   (2, 'Saw III', 'Didnt even flinch', 2),
-  (3, 'Moulin Rouge', 'Made me cry, but I cry in all movies', 3),
+  (3, 'Moulin Rouge', 'Made me cry, but I cry in all movies', 3)
 ;
 
 INSERT INTO sessions (sid, data) VALUES (
