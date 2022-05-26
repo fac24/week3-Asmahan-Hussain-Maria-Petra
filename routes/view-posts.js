@@ -1,6 +1,6 @@
 const db = require("../database/connection");
 
-const santize = (input) => {
+const santitize = (input) => {
   return input.replace(/</g, "&lt;");
 };
 
@@ -19,10 +19,10 @@ function showPosts(request, response) {
   //     (post) =>
   //       (postsHTML = `
   //       <div class="post-container">
-  //       <p>Username: ${post.username}</p>
-  //       <p>Movie: ${post.movie_title}</p>
-  //       <p>Comment: ${post.comment}</p>
-  //       <p>Rating: ${post.rating}</p>
+  //       <p>Username: ${santitize(post.username)}</p>
+  //       <p>Movie: ${santitize(post.movie_title)}</p>
+  //       <p>Comment: ${santitize(post.comment)}</p>
+  //       <p>Rating: ${santitize(post.rating)}</p>
   //       </div>
 
   //       `.concat(postsHTML)) //so posts to at top of list not bottom
