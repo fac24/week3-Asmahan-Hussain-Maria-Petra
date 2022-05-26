@@ -2,6 +2,7 @@ const express = require("express");
 
 const posts = require("./routes/view-posts.js");
 const add = require("./routes/add-post.js");
+const signUp = require("./routes/sign-up.js");
 
 const server = express();
 
