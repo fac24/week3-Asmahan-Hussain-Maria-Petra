@@ -1,5 +1,9 @@
 const db = require("../database/connection");
 
+const santize = (input) => {
+  return input.replace(/</g, "&lt;");
+};
+
 function showPosts(request, response) {
   // const SELECT_USER = `SELECT users.username, movie_title.posts, comment.posts, rating.posts.
   //   FROM users
