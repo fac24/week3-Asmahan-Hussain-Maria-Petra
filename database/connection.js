@@ -1,18 +1,14 @@
-const pg = require("pg");
-const dotenv = require("dotenv");
+const { Pool } = require("pg");
 
-dotenv.config();
-
-const DB_URL = process.env.DATABASE_URL;
-
-if (!DB_URL) {
-  throw new Error("Please set the DATABASE_URL environment variable");
+if (!process.env.DATABASE_URL) {
+  throw new Error("Missing DATABASE_URL env var");
 }
 
-const options = {
-  connectionString: DB_URL,
-};
-
-const db = new pg.Pool(options);
+const db = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
+});
 
 module.exports = db;
