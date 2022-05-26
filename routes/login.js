@@ -1,4 +1,4 @@
-const bcrypt = require("bcryptjs");
+const bcrypto = require("bcryptjs");
 
 function getUser(email) {
   const SELECT_USER = `
