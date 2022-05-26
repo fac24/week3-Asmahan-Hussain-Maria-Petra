@@ -1,4 +1,4 @@
-const bcrypto = require("bcryptjs");
+const bcrypt = require("bcryptjs");
 const db = require("../database/connection.js");
 
 function createUser(username, email, password) {
@@ -29,7 +29,7 @@ function post(request, response) {
   const { username, email, password } = request.body;
   console.log(request.body);
 
-  const hashedPassword = bcrypto.hash(password, 10);
+  const hashedPassword = bcrypt.hash(password, 10);
 
   createUser(username, email, password).catch((error) => {
     console.error(error);
