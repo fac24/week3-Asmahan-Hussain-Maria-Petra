@@ -11,8 +11,6 @@ function verifyUser(email, password) {
     .query(SELECT_USER, [email])
     .then((users) => users.rows[0])
     .then((user) => {
-      // console.log(password);
-      // console.log(user.password);
       if (password === user.password) {
         return true;
       } else {
