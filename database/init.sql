@@ -6,10 +6,10 @@ CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   email TEXT UNIQUE NOT NULL,
   password TEXT NOT NULL,
-  name TEXT NOT NULL
+  username TEXT NOT NULL,
 );
 
-INSERT INTO users (email, password, name) VALUES (
+INSERT INTO users (email, password, username) VALUES (
   'test@gmail.com',
   'abc',
   'Name Names'
