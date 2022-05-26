@@ -8,7 +8,6 @@ let postsHTML = "";
 
 function showPosts(request, response) {
   const sid = request.signedCookies.sid;
-  console.log(request.signedCookies);
   if (sid) {
     const form = `
       <form method="POST" action="/add-post">
@@ -46,8 +45,10 @@ function showPosts(request, response) {
           }
           //.concat(postsHTML)) //so posts to at top of list not bottom
         );
+        return postsHTML;
       })
-      .then(
+      // I have passed on the postsHTML to the next promise and changed its name to fix render issue
+      .then((postsToRender) => {
         response.send(`
   <!DOCTYPE html>
 <html lang="en">
@@ -61,12 +62,12 @@ function showPosts(request, response) {
   <body>
     <h1>Posts from all movie fanatics</h1>
     ${form}
-    ${postsHTML}
+    ${postsToRender}
     <section class="posts">
     </section>
   </body>
-  `)
-      );
+  `);
+      });
   } else {
     response.send(`  <!DOCTYPE html>
   <html lang="en">
