@@ -51,6 +51,7 @@ function showPosts(request, response) {
 
     db.query(SELECT_USER).then((result) => {
       const posts = result.rows;
+      postsHTML = "";
       // posts.forEach((post) => console.log(post));
       posts.forEach(
         (post) => {

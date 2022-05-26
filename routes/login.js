@@ -20,7 +20,7 @@ function post(request, response) {
   const { email, password } = request.body;
   auth
     .verifyUser(email, password)
-    .then(auth.saveUserSession)
+    .then(auth.saveUserSession(email))
     .then((sid) => {
       response.cookie("sid", sid, auth.COOKIE_OPTIONS);
       response.redirect("/posts");
