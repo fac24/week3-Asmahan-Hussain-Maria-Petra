@@ -13,7 +13,8 @@ function get(request, response) {
     <h1>Magnificent Movie Reviews</h1>
     <a href="/login">Log In</a>
     <a href="/sign-up">Sign Up</a>
-  </body>`;
+  </body>
+  </html>`;
 
   response.send(html);
 }

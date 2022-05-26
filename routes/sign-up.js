@@ -58,15 +58,19 @@ function post (request, response) {
 	else {
 
   const { username, email, password } = request.body;
-  console.log(request.body);
 
   const hashedPassword = bcrypt.hash(password, 10);
 
+  response.redirect("/login");
+
   createUser(username, email, password).catch((error) => {
     console.error(error);
-    response.send(`<h1>Something went wrong, sorry</h1>`);
-  
-  })
+    response
+      .status(404)
+      .send(
+        `<h1>Something went wrong, sorry</h1> <a href="./sign-up">Try again</a>`
+      );
+  });
 }
 }
 

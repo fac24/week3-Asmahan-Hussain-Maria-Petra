@@ -36,7 +36,15 @@ server.post("/sign-up", signUpValidation, signUp.post);
 
 server.get("/login", login.get);
 server.post("/login", login.post);
+server.get("*", (req, res) => {
+  res.send(`<h1>Page not found</h1>`, 404);
+});
 
 const PORT = process.env.PORT || 3333;
 
 server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
+
+process.on("unhandledRejection", (error) => {
+  console.error(error);
+  process.exit(1);
+});

@@ -16,7 +16,8 @@
   "author": "",
   "license": "ISC",
   "engines": {
-    "node": "v16.13.2"
+    "node": "v16.13.2",
+    "npm": "8.3.0"
   },
   "bugs": {
     "url": "https://github.com/fac24/week3-Asmahan-Hussain-Maria-Petra/issues"

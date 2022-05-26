@@ -46,6 +46,9 @@ function showPosts(request, response) {
           //.concat(postsHTML)) //so posts to at top of list not bottom
         );
         return postsHTML;
+      }).catch((error) => {
+        console.error(error);
+        response.status(404).send(`<h1>Posts not found</h1>`);
       })
       // I have passed on the postsHTML to the next promise and changed its name to fix render issue
       .then((postsToRender) => {
@@ -68,6 +71,7 @@ function showPosts(request, response) {
   </body>
   `);
       });
+    
   } else {
     response.send(`  <!DOCTYPE html>
   <html lang="en">
@@ -79,9 +83,8 @@ function showPosts(request, response) {
       <title>Team 1</title>
     </head>
     <body>
-      <h1>Please sign in to view posts</h1>
-      <a href="login">sign in here</a>
-      </section>
+      <h1>Please log in to view posts</h1>
+      <a href="./login">sign in here</a>
     </body>`);
   }
 }
