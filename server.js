@@ -22,7 +22,6 @@ const bodyHandler = express.urlencoded({ extended: false });
 server.use(cookieParser(process.env.COOKIE_SECRET));
 server.use(bodyParser.urlencoded({ extended: false }));
 
-
 const staticHandler = express.static("public");
 
 server.use(cookieParser("asddfghjkloiuztr"));
