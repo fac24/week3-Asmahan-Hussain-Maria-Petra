@@ -34,7 +34,11 @@ function post(request, response) {
 
   createUser(username, email, password).catch((error) => {
     console.error(error);
-    response.send(`<h1>Something went wrong, sorry</h1>`);
+    response
+      .status(404)
+      .send(
+        `<h1>Something went wrong, sorry</h1> <a href="./sign-up">Try again</a>`
+      );
   });
 }
 

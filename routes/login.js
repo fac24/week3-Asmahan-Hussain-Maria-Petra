@@ -27,7 +27,7 @@ function post(request, response) {
     })
     .catch((error) => {
       console.error(error);
-      response.send(`<h1>User not found</h1>`);
+      response.send(`<h1>User not found</h1> <a href="./login">Try again</a>`);
     });
 }
 

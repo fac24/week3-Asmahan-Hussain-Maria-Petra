@@ -49,13 +49,14 @@ function showPosts(request, response) {
     INNER JOIN users
     ON users.id = posts.user_id;`;
 
-    db.query(SELECT_USER).then((result) => {
-      const posts = result.rows;
-      postsHTML = "";
-      // posts.forEach((post) => console.log(post));
-      posts.forEach(
-        (post) => {
-          return (postsHTML += `
+    db.query(SELECT_USER)
+      .then((result) => {
+        const posts = result.rows;
+        postsHTML = "";
+        // posts.forEach((post) => console.log(post));
+        posts.forEach(
+          (post) => {
+            return (postsHTML += `
         <div class="post-container">
         <p>Username: ${santitize(post.username)}</p>
         <p>Movie: ${santitize(post.movie_title)}</p>
@@ -63,10 +64,14 @@ function showPosts(request, response) {
         <p>Rating: ${santitize(post.rating)}</p>
         </div>
         `);
-        }
-        //.concat(postsHTML)) //so posts to at top of list not bottom
-      );
-    });
+          }
+          //.concat(postsHTML)) //so posts to at top of list not bottom
+        );
+      })
+      .catch((error) => {
+        console.error(error);
+        response.status(404).send(`<h1>Posts not found</h1>`);
+      });
 
     // console.log(postsHTML);
 
@@ -82,8 +87,8 @@ function showPosts(request, response) {
       <title>Team 1</title>
     </head>
     <body>
-      <h1>Please sign in to view posts</h1>
-      <a href="sign-in">sign in here</a>
+      <h1>Please log in to view posts</h1>
+      <a href="./login">sign in here</a>
       </section>
     </body>`);
   }
