@@ -14,6 +14,7 @@ const posts = require("./routes/view-posts.js");
 const add = require("./routes/add-post.js");
 const signUp = require("./routes/sign-up.js");
 const login = require("./routes/login.js");
+const deletePost = require("./routes/delete-posts.js");
 
 const server = express();
 
@@ -40,7 +41,10 @@ server.get("*", (req, res) => {
   res.send(`<h1>Page not found</h1>`, 404);
 });
 
-const PORT = process.env.PORT || 3333;
+server.post("/delete-posts", deletePost.post);
+
+const PORT = process.env.PORT || 3000;
+
 
 server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
 

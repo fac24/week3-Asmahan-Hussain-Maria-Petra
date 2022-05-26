@@ -19,7 +19,7 @@ function verifyUser(email, password) {
       //return bcrypt.compare(password, user.password);
     })
     .then((match) => {
-      console.log(match);
+      // console.log(match);
       if (!match) {
         throw new Error("Incorrect password");
       } else {
