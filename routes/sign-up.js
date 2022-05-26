@@ -27,9 +27,10 @@ function get(request, response) {
 
 function post(request, response) {
   const { username, email, password } = request.body;
-  console.log(request.body);
 
   const hashedPassword = bcrypt.hash(password, 10);
+
+  response.redirect("/login");
 
   createUser(username, email, password).catch((error) => {
     console.error(error);

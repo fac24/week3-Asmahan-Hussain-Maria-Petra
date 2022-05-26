@@ -12,7 +12,6 @@ const login = require("./routes/login.js");
 const server = express();
 
 const bodyHandler = express.urlencoded({ extended: false });
-server.use(cookieParser(process.env.COOKIE_SECRET));
 const staticHandler = express.static("public");
 
 server.use(cookieParser("asddfghjkloiuztr"));
