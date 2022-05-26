@@ -49,6 +49,7 @@ function showPosts(request, response) {
   db.query(SELECT_USER).then((result) => {
     const posts = result.rows;
     // posts.forEach((post) => console.log(post));
+    postsHTML = "";
     posts.forEach(
       (post) => {
         return (postsHTML += `
@@ -58,13 +59,16 @@ function showPosts(request, response) {
         <p>Comment: ${santitize(post.comment)}</p>
         <p>Rating: ${santitize(post.rating)}</p>
         </div>
+        <form class="delete-button-container" action="/delete-post" method="POST">
+                <button class="delete-button" name="id" value="${post.id}" >
+                    &times;
+                </button>
+            </form>
         `);
       }
       //.concat(postsHTML)) //so posts to at top of list not bottom
     );
   });
-
-  console.log(postsHTML);
 
   response.send(`${HTML}`);
 }
