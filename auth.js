@@ -11,8 +11,8 @@ function verifyUser(email, password) {
     .query(SELECT_USER, [email])
     .then((users) => users.rows[0])
     .then((user) => {
-      console.log(password);
-      console.log(user.password);
+      // console.log(password);
+      // console.log(user.password);
       if (password === user.password) {
         return true;
       } else {
@@ -21,7 +21,7 @@ function verifyUser(email, password) {
       //return bcrypt.compare(password, user.password);
     })
     .then((match) => {
-      console.log(match);
+      // console.log(match);
       if (!match) {
         throw new Error("Incorrect password");
       } else {

@@ -24,7 +24,7 @@ function post(request, response) {
     .then((sid) => {
       response.cookie("sid", sid, auth.COOKIE_OPTIONS);
       response.redirect("/posts");
-      console.log("Successful login");
+      // console.log("Successful login");
     })
     .catch((error) => {
       console.error(error);

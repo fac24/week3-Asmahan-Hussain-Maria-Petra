@@ -8,7 +8,7 @@ let postsHTML = "";
 
 function showPosts(request, response) {
   const sid = request.signedCookies.sid;
-  console.log(request.signedCookies);
+  // console.log(request.signedCookies);
   if (sid) {
     const form = `
       <form method="POST" action="/add-post">
@@ -16,7 +16,7 @@ function showPosts(request, response) {
         <input id="movie" name="movie" type="text" />
           <br />
         <label for="comment">Review:</label>
-        <input id="comment" name="comment" type="text" />
+        <input id="comment" name="comment" type="text"/>
           <br />
         <label for="rating">Fandom rating:</label>
         <input type="number" id="rating" name="rating" min="1" max="5" value="">
@@ -44,7 +44,8 @@ function showPosts(request, response) {
   </body>
   `;
 
-    const SELECT_USER = `SELECT users.username, posts.movie_title, posts.comment, posts.rating
+    const SELECT_USER = `SELECT users.username, users.email, posts.movie_title, posts.comment, posts.rating, 
+    posts.id
     FROM posts
     INNER JOIN users
     ON users.id = posts.user_id;`;
@@ -55,14 +56,21 @@ function showPosts(request, response) {
       // posts.forEach((post) => console.log(post));
       posts.forEach(
         (post) => {
+          // console.log(post.id);
+
           return (postsHTML += `
-        <div class="post-container">
-        <p>Username: ${santitize(post.username)}</p>
-        <p>Movie: ${santitize(post.movie_title)}</p>
-        <p>Comment: ${santitize(post.comment)}</p>
-        <p>Rating: ${santitize(post.rating)}</p>
-        </div>
-        `);
+                <div class="post-container">
+                <p>Username: ${santitize(post.username)}</p>
+                <p>Movie: ${santitize(post.movie_title)}</p>
+                <p>Comment: ${santitize(post.comment)}</p>
+                <p>Rating: ${santitize(post.rating)}</p>
+                </div>
+                <form  action="/delete-posts" method="POST">
+                        <button name="id" value="${post.id}" > 
+                            &times;
+                        </button>
+                    </form>
+  `);
         }
         //.concat(postsHTML)) //so posts to at top of list not bottom
       );

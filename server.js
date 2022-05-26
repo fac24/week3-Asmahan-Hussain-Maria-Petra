@@ -8,6 +8,7 @@ const posts = require("./routes/view-posts.js");
 const add = require("./routes/add-post.js");
 const signUp = require("./routes/sign-up.js");
 const login = require("./routes/login.js");
+const deletePost = require("./routes/delete-posts.js");
 
 const server = express();
 
@@ -27,6 +28,8 @@ server.post("/sign-up", signUp.post);
 
 server.get("/login", login.get);
 server.post("/login", login.post);
+
+server.post("/delete-posts", deletePost.post);
 
 const PORT = process.env.PORT || 3000;
 
