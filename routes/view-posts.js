@@ -4,45 +4,22 @@ const santitize = (input) => {
   return input.replace(/</g, "&lt;");
 };
 
+let postsHTML = "";
+
 function showPosts(request, response) {
-  // const SELECT_USER = `SELECT users.username, movie_title.posts, comment.posts, rating.posts.
-  //   FROM users
-  //   INNER JOIN posts
-  //   ON users.id = posts.user_id`;
-  // db.query(SELECT_USER).then((result) => {
-  //   console.log(result);
-  // Assuming below is correct it can be uncommented. Can't test on my laptop with no database setup :'(
-
-  //   let postsHTML = "";
-  //   const posts = result.rows;
-  //   posts.map(
-  //     (post) =>
-  //       (postsHTML = `
-  //       <div class="post-container">
-  //       <p>Username: ${santitize(post.username)}</p>
-  //       <p>Movie: ${santitize(post.movie_title)}</p>
-  //       <p>Comment: ${santitize(post.comment)}</p>
-  //       <p>Rating: ${santitize(post.rating)}</p>
-  //       </div>
-
-  //       `.concat(postsHTML)) //so posts to at top of list not bottom
-  //   );
-  //   return postsHTML;
-  // });
-
   const form = `
-    <form method="POST" action="/add-post">
-      <label for="movie">Movie title:</label>
-      <input id="movie" name="movie" type="text" />
-        <br />
-      <label for="comment">Review:</label>
-      <input id="comment" name="comment" type="text" />
-        <br />
-      <label for="rating">Fandom rating:</label>
-      <input type="number" id="rating" name="rating" min="1" max="5" value="">
-        <br />
-      <button type="submit" class="btn">Post</button>
-  `;
+      <form method="POST" action="/add-post">
+        <label for="movie">Movie title:</label>
+        <input id="movie" name="movie" type="text" />
+          <br />
+        <label for="comment">Review:</label>
+        <input id="comment" name="comment" type="text" />
+          <br />
+        <label for="rating">Fandom rating:</label>
+        <input type="number" id="rating" name="rating" min="1" max="5" value="">
+          <br />
+        <button type="submit" class="btn">Post</button>
+    `;
 
   // Will add the postsHTML to the HTML below ${postsHTML}
   const HTML = `
@@ -58,10 +35,36 @@ function showPosts(request, response) {
   <body>
     <h1>Posts from all movie fanatics</h1>
     ${form}
+    ${postsHTML}
     <section class="posts">
     </section>
   </body>
   `;
+
+  const SELECT_USER = `SELECT users.username, posts.movie_title, posts.comment, posts.rating
+    FROM posts
+    INNER JOIN users
+    ON users.id = posts.user_id;`;
+
+  db.query(SELECT_USER).then((result) => {
+    const posts = result.rows;
+    // posts.forEach((post) => console.log(post));
+    posts.forEach(
+      (post) => {
+        return (postsHTML += `
+        <div class="post-container">
+        <p>Username: ${santitize(post.username)}</p>
+        <p>Movie: ${santitize(post.movie_title)}</p>
+        <p>Comment: ${santitize(post.comment)}</p>
+        <p>Rating: ${santitize(post.rating)}</p>
+        </div>
+        `);
+      }
+      //.concat(postsHTML)) //so posts to at top of list not bottom
+    );
+  });
+
+  console.log(postsHTML);
 
   response.send(`${HTML}`);
 }
