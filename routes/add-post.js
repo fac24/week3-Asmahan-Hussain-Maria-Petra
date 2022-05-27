@@ -5,7 +5,7 @@ function addPost(request, response) {
     //Get signed in users details
     db.query(`SELECT * FROM sessions;`)
       .then((user) => {
-        return user.rows[user.rows.length - 1].data.user; //this is the email
+        return user.rows[user.rows.length - 1].data; //this is the email
       })
       //make a request with email to get user id and username
       .then((email) => {

@@ -5,10 +5,20 @@ const santitize = (input) => {
 };
 
 let postsHTML = "";
+var sessionEmail;
+
+async function getEmail() {
+  SELECT_SESSION = `SELECT data FROM sessions;`;
+  await db.query(SELECT_SESSION).then((result) => {
+    //getting last user email from sessions table
+    sessionEmail = result.rows[result.rows.length - 1].data;
+  });
+}
 
 function showPosts(request, response) {
-  const sid = request.signedCookies.sid;
-  if (sid) {
+  getEmail();
+  const cookie = request.signedCookies.sid;
+  if (cookie) {
     const form = `
       <form method="POST" action="/add-post">
         <label for="movie">Movie title:</label>
@@ -35,19 +45,30 @@ function showPosts(request, response) {
         postsHTML = "";
         posts.forEach(
           (post) => {
-            return (postsHTML += `
-          <div class="post-container">
-        <p>Username: ${santitize(post.username)}</p>
-        <p>Movie: ${santitize(post.movie_title)}</p>
-        <p>Comment: ${santitize(post.comment)}</p>
-        <p>Rating: ${post.rating}</p>
-                       <form  action="/delete-posts" method="POST">
-                        <button name="id" value="${post.id}" > 
-                            &times;
-                        </button>
-                    </form>
-        </div>
-        `);
+            if (post.email === sessionEmail) {
+              return (postsHTML += `
+            <div class="post-container">
+          <p>Username: ${santitize(post.username)}</p>
+          <p>Movie: ${santitize(post.movie_title)}</p>
+          <p>Comment: ${santitize(post.comment)}</p>
+          <p>Rating: ${post.rating}</p>
+                         <form  action="/delete-posts" method="POST">
+                          <button type="submit" name="id" value="${post.id}" > 
+                              &times;
+                          </button>
+                      </form>
+          </div>
+          `);
+            } else {
+              return (postsHTML += `
+            <div class="post-container">
+          <p>Username: ${santitize(post.username)}</p>
+          <p>Movie: ${santitize(post.movie_title)}</p>
+          <p>Comment: ${santitize(post.comment)}</p>
+          <p>Rating: ${post.rating}</p>
+          </div>
+          `);
+            }
           }
           //.concat(postsHTML)) //so posts to at top of list not bottom
         );
