@@ -1,8 +1,6 @@
 const express = require("express");
 
-//validation:
-//Express Validator Functions:
-// const { check, validationResult } = require('express-validator');
+
 const bodyParser = require("body-parser");
 
 const cookieParser = require("cookie-parser");
@@ -23,7 +21,6 @@ server.use(bodyParser.urlencoded({ extended: false }));
 
 const staticHandler = express.static("public");
 
-server.use(cookieParser("asddfghjkloiuztr"));
 server.use(bodyHandler);
 server.use(staticHandler);
 

@@ -11,7 +11,7 @@ function get(request, response) {
       <input type="email" id="email" name="email">
       <label for="password">Password</label>
       <input type="password" id="password" name="password">
-      <button>Log in</button>
+      <button class="login-btn">Log in</button>
     </form>
   `);
 }
