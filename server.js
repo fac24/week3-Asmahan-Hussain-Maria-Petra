@@ -6,8 +6,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const cookieParser = require("cookie-parser");
-const dotenv = require("dotenv");
-dotenv.config();
 
 const home = require("./routes/home.js");
 const posts = require("./routes/view-posts.js");
