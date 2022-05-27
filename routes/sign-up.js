@@ -33,34 +33,18 @@ function get(request, response) {
         </div>
         <input type="password" id="password" aria-describedby="passwordRequirements" name="password" required pattern=".*\d.*"
         minlength="8">
-        <button>Sign up</button>
+        <button class="button">Sign up</button>
       </form>
     `);
 }
 
-// // Validation rules:
-// const signUpValidation = [
-//   //check email
-//   check('email', 'Email Must Be A Valid Email Address').isEmail().trim().escape().normalizeEmail(),
-//   //check password
-//   check('password').isLength({ min: 8 })
-//   .withMessage('Password Must Be at Least 8 Characters')
-//   .matches('[0-9]').withMessage('Password Must Contain a Number')
-//   .matches('[A-Z]').withMessage('Password Must Contain an Uppercase Letter')
-//   .trim().escape()];
 
-// Processing user input:
+
 function post(request, response) {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(422).json({ errors: errors.array() });
-  } else {
     const { username, email, password } = request.body;
-
     const hashedPassword = bcrypt.hash(password, 10);
 
     response.redirect("/login");
-
     createUser(username, email, password).catch((error) => {
       console.error(error);
       response
@@ -70,6 +54,6 @@ function post(request, response) {
         );
     });
   }
-}
+
 
 module.exports = { get, post };
