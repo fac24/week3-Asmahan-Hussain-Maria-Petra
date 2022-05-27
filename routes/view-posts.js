@@ -15,9 +15,8 @@ async function getEmail() {
   });
 }
 
-getEmail();
-
 function showPosts(request, response) {
+  getEmail();
   const cookie = request.signedCookies.sid;
   if (cookie) {
     const form = `
@@ -54,7 +53,7 @@ function showPosts(request, response) {
           <p>Comment: ${santitize(post.comment)}</p>
           <p>Rating: ${post.rating}</p>
                          <form  action="/delete-posts" method="POST">
-                          <button name="id" value="${post.id}" > 
+                          <button type="submit" name="id" value="${post.id}" > 
                               &times;
                           </button>
                       </form>
