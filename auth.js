@@ -36,7 +36,7 @@ function saveUserSession(user) {
     RETURNING sid`;
 
   return db
-    .query(INSERT_SESSION, [sid, { user }])
+    .query(INSERT_SESSION, [sid, user])
     .then((result) => result.rows[0].sid);
 }
 
