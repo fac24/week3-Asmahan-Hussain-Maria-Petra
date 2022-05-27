@@ -1,6 +1,5 @@
 const express = require("express");
 
-
 const bodyParser = require("body-parser");
 
 const cookieParser = require("cookie-parser");
@@ -32,9 +31,9 @@ server.post("/sign-up", signUp.post);
 
 server.get("/login", login.get);
 server.post("/login", login.post);
-server.get("*", (req, res) => {
+/* server.get("*", (req, res) => {
   res.send(`<h1>Page not found</h1>`, 404);
-});
+}); */
 
 server.post("/delete-posts", deletePost.post);
 
