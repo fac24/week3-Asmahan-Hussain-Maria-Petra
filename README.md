@@ -30,14 +30,34 @@ Movie Rating App
 
 ### Database Schema
 
+Table: users
+
+| Column        | Type          | Nullable | Notes    |
+| ------------- | ------------- | -------- | -------- |
+| id      | serial          | not null | PRIMARY KEY    |
+| username           | text         |   | FOREIGN KEY     |
+| email       | text          | not null |  unique  |
+| password       | text          | not null |     |
+
+
 Table: posts
 
 | Column        | Type          | Nullable | Notes    |
 | ------------- | ------------- | -------- | -------- |
-| id      | integer          | not null | PRIMARY KEY    |
-| user_id           | integer         |   | FOREIGN KEY     |
+| id      | serial          | not null | PRIMARY KEY    |
+| user_id           | integer         |   | FOREIGN KEY  REFERENCES users(id) ON DELETE CASCADE  |
 | movie_title        | text          |  |     |
 | comment        | text          |  |     |
 | rating        | text          |  |     |
+
+
+Table: sessions
+
+| Column        | Type          | Nullable | Notes    |
+| ------------- | ------------- | -------- | -------- |
+| sid      | text          |  | PRIMARY KEY    |
+| data           | json         |  not null |      |
+
+
 
 
