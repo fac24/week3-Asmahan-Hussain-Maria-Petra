@@ -31,7 +31,7 @@ function get(request, response) {
           Passwords must contain at least one letter, one number, and contain at
           least 8 characters.
         </div>
-        <input type="password" id="password" aria-describedby="passwordRequirements" name="password" 
+        <input type="password" id="password" aria-describedby="passwordRequirements" name="password" />
         <button class="button">Sign up</button>
       </form>
     `);
