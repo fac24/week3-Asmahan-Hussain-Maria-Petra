@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS users, posts, sessions CASCADE;
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
-  username VARCHAR(20),
+  username TEXT,
   email  TEXT UNIQUE NOT NULL,
   password  TEXT NOT NULL
 );
