@@ -11,8 +11,8 @@ function get(request, response) {
   </head>
   <body>
     <h1>Magnificent Movie Reviews</h1>
-    <a href="/login">Log In</a>
-    <a href="/sign-up">Sign Up</a>
+    <a href="/login" class="login-link">Log In</a>
+    <a href="/sign-up" class="signup-link">Sign Up</a>
   </body>
   </html>`;
 

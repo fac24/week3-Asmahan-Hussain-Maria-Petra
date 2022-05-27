@@ -1,8 +1,6 @@
 const express = require("express");
 
-//validation:
-//Express Validator Functions:
-// const { check, validationResult } = require('express-validator');
+
 const bodyParser = require("body-parser");
 
 const cookieParser = require("cookie-parser");
@@ -25,7 +23,6 @@ server.use(bodyParser.urlencoded({ extended: false }));
 
 const staticHandler = express.static("public");
 
-server.use(cookieParser("asddfghjkloiuztr"));
 server.use(bodyHandler);
 server.use(staticHandler);
 
@@ -43,7 +40,7 @@ server.get("*", (req, res) => {
 
 server.post("/delete-posts", deletePost.post);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 9000;
 
 server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
 
