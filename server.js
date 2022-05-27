@@ -14,8 +14,8 @@ const deletePost = require("./routes/delete-posts.js");
 const server = express();
 
 const bodyHandler = express.urlencoded({ extended: false });
-
-server.use(cookieParser("asdfghjklertyuio"));
+server.use(cookieParser(process.env.COOKIE_SECRET));
+//server.use(cookieParser("asdfghjklertyuio"));
 server.use(bodyParser.urlencoded({ extended: false }));
 
 const staticHandler = express.static("public");
