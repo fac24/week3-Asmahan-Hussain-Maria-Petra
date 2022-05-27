@@ -10,6 +10,7 @@ const add = require("./routes/add-post.js");
 const signUp = require("./routes/sign-up.js");
 const login = require("./routes/login.js");
 const deletePost = require("./routes/delete-posts.js");
+const auth = require("./auth.js");
 
 const server = express();
 
@@ -31,9 +32,9 @@ server.post("/sign-up", signUp.post);
 
 server.get("/login", login.get);
 server.post("/login", login.post);
-/* server.get("*", (req, res) => {
+server.get("*", (req, res) => {
   res.send(`<h1>Page not found</h1>`, 404);
-}); */
+});
 
 server.post("/delete-posts", deletePost.post);
 

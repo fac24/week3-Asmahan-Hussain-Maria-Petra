@@ -1,0 +1,81 @@
+html {
+  font-family: "Limelight", cursive;
+  font-family: "Orbitron", sans-serif;
+}
+
+body {
+  color: whitesmoke;
+  text-align: center;
+  padding: 3px;
+  background: rgb(32, 28, 99);
+  background: linear-gradient(
+    90deg,
+    rgba(32, 28, 99, 1) 0%,
+    rgba(0, 0, 0, 1) 50%,
+    rgba(32, 28, 99, 1) 100%
+  );
+}
+
+h1 {
+  font-family: "Limelight", cursive;
+  font-size: 2.5em;
+  margin: 50px 0 60px 0;
+}
+
+a {
+  border: 2px solid whitesmoke;
+  text-decoration: none;
+  color: rgb(211, 92, 92);
+  padding: 10px;
+  margin: 10px;
+}
+
+a:hover {
+  color: white;
+  background-color: rgb(211, 92, 92);
+}
+
+img {
+  width: 25%;
+  margin: 30px;
+}
+
+input {
+  width: 200px;
+  height: 20px;
+  font-family: "Orbitron", sans-serif;
+  padding: 5px;
+  margin: 5px;
+  border: 3px rgb(211, 92, 92) solid;
+}
+
+button {
+  border: 3px whitesmoke solid;
+  background-color: rgb(211, 92, 92);
+  color: whitesmoke;
+  width: 100px;
+  height: 35px;
+  font-family: "Limelight", cursive;
+  padding: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  color: white;
+  background-color: rgb(211, 92, 92);
+}
+
+#comment {
+  height: 100px;
+}
+
+.post-container {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  width: 50%;
+  border: 5px whitesmoke solid;
+  padding: 20px;
+}

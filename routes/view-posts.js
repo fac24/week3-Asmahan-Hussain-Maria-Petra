@@ -22,7 +22,7 @@ function showPosts(request, response) {
           <br />
         <button type="submit" class="btn">Post</button>
     `;
-    
+
     const SELECT_USER = `SELECT users.username, users.email, posts.movie_title, posts.comment, posts.rating, 
     posts.id
     FROM posts
@@ -52,9 +52,25 @@ function showPosts(request, response) {
           //.concat(postsHTML)) //so posts to at top of list not bottom
         );
         return postsHTML;
-      }).catch((error) => {
+      })
+      .catch((error) => {
         console.error(error);
-        response.status(404).send(`<h1>Posts not found</h1>`);
+        response.status(404).send(`
+        <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Movie Reviews</title>
+  </head>
+  <body>
+        <h1>Posts not found</h1>
+        </body>
+  </html>
+        `);
       })
       // I have passed on the postsHTML to the next promise and changed its name to fix render issue
       .then((postsToRender) => {
@@ -66,7 +82,8 @@ function showPosts(request, response) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="styles.css" />
-    <title>Team 1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Ratings</title>
   </head>
   <body>
     <h1>Posts from all movie fanatics</h1>
@@ -85,6 +102,7 @@ function showPosts(request, response) {
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="stylesheet" type="text/css" href="styles.css" />
+      <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
       <title>Team 1</title>
     </head>
     <body>
