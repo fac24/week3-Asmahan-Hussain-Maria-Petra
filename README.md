@@ -56,7 +56,7 @@ Table: sessions
 | Column        | Type          | Nullable | Notes    |
 | ------------- | ------------- | -------- | -------- |
 | sid      | text          |  | PRIMARY KEY    |
-| data           | json         |  not null |      |
+| email           | text         |  not null |      |
 
 
 
