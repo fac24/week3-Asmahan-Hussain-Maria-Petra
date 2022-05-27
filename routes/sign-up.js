@@ -16,22 +16,11 @@ function get(request, response) {
       <form action="sign-up" method="POST">
         
       <label for="username">username
-         <span aria-hidden="true">*</span></label>
-
         <input type="text" id="username" name="username" required>
-
         <label for="email">Email
-        <span aria-hidden="true">*</span></label>
-
         <input type="email" id="email" name="email" required>
-
-        <label for="password">Password
-        <span aria-hidden="true">*</span></label>
-        <div id="passwordRequirements" class="requirements"><br>
-          Passwords must contain at least one letter, one number, and contain at
-          least 8 characters.
-        </div>
-        <input type="password" id="password" aria-describedby="passwordRequirements" name="password" />
+        <label for="password">
+        <input type="password" id="password" name="password" required>
         <button class="button">Sign up</button>
       </form>
     `);
