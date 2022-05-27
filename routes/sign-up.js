@@ -31,29 +31,25 @@ function get(request, response) {
           Passwords must contain at least one letter, one number, and contain at
           least 8 characters.
         </div>
-        <input type="password" id="password" aria-describedby="passwordRequirements" name="password" required pattern=".*\d.*"
-        minlength="8">
+        <input type="password" id="password" aria-describedby="passwordRequirements" name="password" 
         <button class="button">Sign up</button>
       </form>
     `);
 }
 
-
-
 function post(request, response) {
-    const { username, email, password } = request.body;
-    const hashedPassword = bcrypt.hash(password, 10);
+  const { username, email, password } = request.body;
+  // const hashedPassword = bcrypt.hash(password, 10);
 
-    response.redirect("/login");
-    createUser(username, email, password).catch((error) => {
-      console.error(error);
-      response
-        .status(404)
-        .send(
-          `<h1>Something went wrong, sorry</h1> <a href="./sign-up">Try again</a>`
-        );
-    });
-  }
-
+  response.redirect("/login");
+  createUser(username, email, password).catch((error) => {
+    console.error(error);
+    response
+      .status(404)
+      .send(
+        `<h1>Something went wrong, sorry</h1> <a href="./sign-up">Try again</a>`
+      );
+  });
+}
 
 module.exports = { get, post };

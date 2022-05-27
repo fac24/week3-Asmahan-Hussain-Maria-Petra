@@ -19,7 +19,7 @@ CREATE TABLE posts (
 
 CREATE TABLE sessions (
   sid TEXT PRIMARY KEY,
-  data JSON NOT NULL
+  data TEXT NOT NULL
 );
 
 INSERT INTO users (username, email, password) VALUES
@@ -33,10 +33,5 @@ INSERT INTO posts (user_id, movie_title, comment, rating) VALUES
   (2, 'Saw III', 'Didnt even flinch', 2),
   (3, 'Moulin Rouge', 'Made me cry, but I cry in all movies', 3)
 ;
-
-INSERT INTO sessions (sid, data) VALUES (
-  'abc123',
-  '{"test":"stuff"}'
-);
 
 COMMIT;
